@@ -13,11 +13,11 @@ firebase.initializeApp(firebaseConfig);
 var database = firebase.database();
 var trainName = "";
 var destination = "";
-// Take away strings and let JavaScript identify what these variables will be
+// (Let JavaScript identify what these variables will be)
 var trainTime
 var frequency
 
-// Collect data and upload to Firebase
+// Collect value of data and upload to Firebase
 $(".btn-primary").on("click", function (event) {
     event.preventDefault();
     trainName = $("#trainInput").val().trim();
@@ -36,13 +36,15 @@ $(".btn-primary").on("click", function (event) {
         trainTime: trainTime,
         frequency: frequency,
     });
+
+    // Empty fields so new data can be entered
     $("#trainInput").empty();
     $("#destinationInput").empty();
     $("#timeInput").empty();
     $("#frequencyInput").empty();
 });
 
-// Adding train data from Firebase to the table
+// Adding in train data from Firebase 
 database.ref().on("child_added", function (childSnapshot, prevChildKey) {
 
     var tName = childSnapshot.val().trainName;
@@ -50,6 +52,7 @@ database.ref().on("child_added", function (childSnapshot, prevChildKey) {
     var tFrequency = childSnapshot.val().frequency;
     var tFirstTrain = childSnapshot.val().trainTime;
 
+    // Formatting how the time will display
     var timeArr = trainTime.split(":");
     var newTrainTime = moment()
         .hours(timeArr[0])
@@ -64,8 +67,8 @@ database.ref().on("child_added", function (childSnapshot, prevChildKey) {
         tMinutes = newTrainTime.diff(moment(), "minutes");
     } else {
         // Calculate the minutes until arrival using hardcore math
-        // To calculate the minutes till arrival, take the current time in unix subtract the FirstTrain time
-        // and find the modulus between the difference and the frequency.
+        // To calculate the minutes till arrival, take the current time in unix and subtract the FirstTrain time
+        // Find the modulus between the difference and the frequency
         var differenceTimes = moment().diff(newTrainTime, "minutes");
         var tRemainder = differenceTimes % tFrequency;
         tMinutes = tFrequency - tRemainder;
@@ -79,6 +82,7 @@ database.ref().on("child_added", function (childSnapshot, prevChildKey) {
     console.log("tMinutes:", tMinutes);
     console.log("tArrival:", tArrival);
 
+    // Display data on the table in a new row
     $("#train-table > tbody").append(
         $("<tr>").append(
             $("<td>").text(tName),

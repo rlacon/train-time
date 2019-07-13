@@ -26,15 +26,50 @@
 </head>
 
 <body>
+    <div class="jumbotron">
+        <h1 class="display-4">Train Schedule</h1>
+        <p class="lead">Get real-time updates on train departure and arrival times with our schedule!</p>
+        <hr class="my-4">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Train Name</th>
+                    <th scope="col">Destination</th>
+                    <th scope="col">Frequency (min)</th>
+                    <th scope="col">Next Arrival</th>
+                    <th scope="col">Minutes Away</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+        <br>
+
+        <form>
+            <div class="form-group">
+                <label for="formGroupExampleInput">Train Name</label>
+                <input type="text" class="form-control" id="trainInput">
+            </div>
+            <div class="form-group">
+                <label for="formGroupExampleInput2">Destination</label>
+                <input type="text" class="form-control" id="destinationInput">
+            </div>
+            <div class="form-group">
+                <label for="formGroupExampleInput">First Train Time (HH:mm - military time)</label>
+                <input type="text" class="form-control" id="timeInput">
+            </div>
+            <div class="form-group">
+                <label for="formGroupExampleInput2">Frequency (min)</label>
+                <input type="text" class="form-control" id="frequencyInput">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
 
 
-
-
-
-
-    <!-- jQuery CDN -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"> </script>
-    <script src="assets/javascript/app.js"></script>
+        <!-- jQuery CDN -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"> </script>
+        <script src="assets/javascript/app.js"></script>
 </body>
 
 </html>

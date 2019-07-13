@@ -38,10 +38,10 @@ $(".btn-primary").on("click", function (event) {
     });
 
     // Empty fields so new data can be entered
-    $("#trainInput").empty();
-    $("#destinationInput").empty();
-    $("#timeInput").empty();
-    $("#frequencyInput").empty();
+    $("#trainInput").val("");
+    $("#destinationInput").val("");
+    $("#timeInput").val("");
+    $("#frequencyInput").val("");
 });
 
 // Adding in train data from Firebase 

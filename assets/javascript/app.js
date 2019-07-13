@@ -53,31 +53,25 @@ database.ref().on("child_added", function (childSnapshot, prevChildKey) {
     var tFirstTrain = childSnapshot.val().trainTime;
 
     // Formatting how the time will display
-    var timeArr = trainTime.split(":");
+    var timeArr = tFirstTrain.split(":");
     var newTrainTime = moment()
         .hours(timeArr[0])
         .minutes(timeArr[1]);
-    var maxMoment = moment.max(moment(), newTrainTime);
     var tMinutes;
     var tArrival;
 
     // If the first train is later than the current time, sent arrival to the first train time
-    if (maxMoment === newTrainTime) {
-        tArrival = newTrainTime.format("hh:mm A");
-        tMinutes = newTrainTime.diff(moment(), "minutes");
-    } else {
-        // Calculate the minutes until arrival using hardcore math
-        // To calculate the minutes till arrival, take the current time in unix and subtract the FirstTrain time
-        // Find the modulus between the difference and the frequency
-        var differenceTimes = moment().diff(newTrainTime, "minutes");
-        var tRemainder = differenceTimes % tFrequency;
-        tMinutes = tFrequency - tRemainder;
+    // Calculate the minutes until arrival using hardcore math
+    // To calculate the minutes till arrival, take the current time in unix and subtract the FirstTrain time
+    // Find the modulus between the difference and the frequency
+    var differenceTimes = moment().diff(newTrainTime, "minutes");
+    var tRemainder = differenceTimes % tFrequency;
+    tMinutes = tFrequency - tRemainder;
 
-        // To calculate the arrival time, add the tMinutes to the current time
-        tArrival = moment()
-            .add(tMinutes, "m")
-            .format("hh:mm A");
-    }
+    // To calculate the arrival time, add the tMinutes to the current time
+    tArrival = moment()
+        .add(tMinutes, "m")
+        .format("hh:mm A");
 
     console.log("tMinutes:", tMinutes);
     console.log("tArrival:", tArrival);

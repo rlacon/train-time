@@ -14,9 +14,32 @@ $(document).ready(function () {
     console.log("Document Loaded!");
 
 
-var database = firebase.database();
+    var database = firebase.database();
+    var trainName = "";
+    var destination = "";
+    var trainTime = 0;
+    var frequency = 0;
 
+    $(".btn-primary").on("click", function (event) {
+        event.preventDefault();
+        trainName = $("#trainInput").val().trim();
+        destination = $("#destinationInput").val().trim();
+        trainTime = $("#timeInput").val().trim();
+        frequency = $("#frequencyInput").val().trim();
 
+        console.log(trainName);
+        console.log(destination);
+        console.log(trainTime);
+        console.log(frequency);
+
+        database.ref().push({
+            trainName: trainName,
+            destination: destination,
+            trainTime: trainTime,
+            frequency: frequency
+        });
+
+    });
 
 
 

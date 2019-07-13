@@ -30,7 +30,7 @@
         <h1 class="display-4">Train Schedule</h1>
         <p class="lead">Get real-time updates on train departure and arrival times with our schedule!</p>
         <hr class="my-4">
-        <table class="table">
+        <table class="table" id="train-table">
             <thead>
                 <tr>
                     <th scope="col">Train Name</th>
@@ -48,19 +48,19 @@
 
         <form>
             <div class="form-group">
-                <label for="formGroupExampleInput">Train Name</label>
+                <label for="trainInput">Train Name</label>
                 <input type="text" class="form-control" id="trainInput">
             </div>
             <div class="form-group">
-                <label for="formGroupExampleInput2">Destination</label>
+                <label for="destinationInput">Destination</label>
                 <input type="text" class="form-control" id="destinationInput">
             </div>
             <div class="form-group">
-                <label for="formGroupExampleInput">First Train Time (HH:mm - military time)</label>
+                <label for="timeInput">First Train Time (HH:mm - military time)</label>
                 <input type="text" class="form-control" id="timeInput">
             </div>
             <div class="form-group">
-                <label for="formGroupExampleInput2">Frequency (min)</label>
+                <label for="frequencyInput">Frequency (min)</label>
                 <input type="text" class="form-control" id="frequencyInput">
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
@@ -69,6 +69,8 @@
 
         <!-- jQuery CDN -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"> </script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+        integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
         <script src="assets/javascript/app.js"></script>
 </body>
 

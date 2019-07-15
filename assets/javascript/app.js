@@ -25,24 +25,39 @@ $(".btn-primary").on("click", function (event) {
     trainTime = $("#timeInput").val().trim();
     frequency = $("#frequencyInput").val().trim();
 
-    console.log(trainName);
-    console.log(destination);
-    console.log(trainTime);
-    console.log(frequency);
+    if ((validateHhMm(trainTime)) && (!isNaN(parseInt(frequency)))) {
+        console.log(trainName);
+        console.log(destination);
+        console.log(trainTime);
+        console.log(frequency);
 
-    database.ref().push({
-        trainName: trainName,
-        destination: destination,
-        trainTime: trainTime,
-        frequency: frequency,
-    });
+        database.ref().push({
+            trainName: trainName,
+            destination: destination,
+            trainTime: trainTime,
+            frequency: frequency,
+        });
 
-    // Empty fields so new data can be entered
-    $("#trainInput").val("");
-    $("#destinationInput").val("");
-    $("#timeInput").val("");
-    $("#frequencyInput").val("");
+        // Empty fields so new data can be entered
+        $("#trainInput").val("");
+        $("#destinationInput").val("");
+        $("#timeInput").val("");
+        $("#frequencyInput").val("");
+    }
+    else if (!(validateHhMm(trainTime)) || trainTime === "") {
+        alert("Please enter a valid time")
+        $("#timeInput").val("")
+    } else if (isNaN(parseInt(frequency)) || frequency === "") {
+        alert("Enter frequency in a numerical format")
+        $("#frequencyInput").val("")
+    }
 });
+
+function validateHhMm(trainTime) {
+    var isValid = /^([0-1][0-9]|2[0-3]):([0-5][0-9])$/.test(trainTime);
+
+    return isValid;
+}
 
 // Adding in train data from Firebase 
 database.ref().on("child_added", function (childSnapshot, prevChildKey) {

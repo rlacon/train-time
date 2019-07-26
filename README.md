@@ -1,1 +1,3 @@
 # train-time
+
+Train Scheduler is a project that extracts the value of whatever character the user has entered in the fields, and upon clicking submit, appends it to the table above. It also takes a snapshot of the value and stores it to Firebase. Using Moment.js, it can determine how soon that train will approach the station based on the current time, the frequency it arrives at the station, and the train's starting time.
